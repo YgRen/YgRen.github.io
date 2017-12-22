@@ -350,6 +350,203 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://ygren.github.io/2017/12/23/阿里云服务器搭建SVN版本控制工具/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Y.G Ren">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/timg.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Y.G Ren'Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/23/阿里云服务器搭建SVN版本控制工具/" itemprop="url">阿里云服务器搭建SVN版本控制工具</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-23T00:01:15+08:00">
+                2017-12-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/版本控制/" itemprop="url" rel="index">
+                    <span itemprop="name">版本控制</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/12/23/阿里云服务器搭建SVN版本控制工具/" class="leancloud_visitors" data-flag-title="阿里云服务器搭建SVN版本控制工具">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  613
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+              <div class="post-description">
+                  阿里云服务器搭建SVN版本控制工具记录。
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>阿里云服务器搭建SVN版本控制工具记录<br>在终端下采用ssh root@47.92.3.188连接我的服务器进入远程主机操作<br>修改阿里云主机名称命令：<br>hostnamectl set-hostname 新主机名</p>
+<p>SVN部署操作<br>检查是否安装地板本SVN：<br>rpm -qa subversion<br>卸载旧版本svn:<br>yum remove subversion<br>安装svn服务器端：<br>yum install subversion<br>执行以下命令：<br>cd /usr/local 进入目录<br>mkdir svnRepo 创建SVN目录<br>chmod -R 777 svnRepo 修改权限777<br>svnadmin create /usr/local/svnRepo/test_server  创建一个svn版本仓库test_server(test_server可以随便取名字）</p>
+<p>cd svnRepo/test_server/conf</p>
+<p>1）修改该目录下三个配置文件<br>vi svnserve.conf<br>把</p>
+<h1 id="anon-access-read"><a href="#anon-access-read" class="headerlink" title="anon-access = read"></a>anon-access = read</h1><h1 id="auth-access-write"><a href="#auth-access-write" class="headerlink" title="auth-access = write"></a>auth-access = write</h1><h1 id="password-db-passwd"><a href="#password-db-passwd" class="headerlink" title="password-db= passwd"></a>password-db= passwd</h1><h1 id="realm-test-server"><a href="#realm-test-server" class="headerlink" title="realm = test_server"></a>realm = test_server</h1><p>前#号和空格去掉，变成<br>anon-access = none //修改成none<br>auth-access = write<br>password-db= passwd<br>realm = test_server //改成自己的版本库<br>保存退出<br>2）vi authz //文件，创建svn组和组用户的权限<br>test_server //创建test_server组，并制定三个用户whl，wxr，ryg<br>[/] //制定根目录下的权限<br>[test_server:/]//制定版本分支目录下的权限<br>@test_server = rw // test_server组用户权限为读写<br>× = r //其他用户只有读权限<br>保存退出<br>3）修改或创建用户密码<br>vi passwd<br>[users]<br>whl = Jitu2017<br>wxr = Jitu2017<br>ryg = Jitu2017<br>保存退出</p>
+<p>设置自启动<br>vi /etc/rc.local //打开自启动文件</p>
+<p>文件内容如下</p>
+<p>#!/bin/bash</p>
+<h1 id="THIS-FILE-IS-ADDED-FOR-COMPATIBILITY-PURPOSES"><a href="#THIS-FILE-IS-ADDED-FOR-COMPATIBILITY-PURPOSES" class="headerlink" title="THIS FILE IS ADDED FOR COMPATIBILITY PURPOSES"></a>THIS FILE IS ADDED FOR COMPATIBILITY PURPOSES</h1><p>#</p>
+<h1 id="It-is-highly-advisable-to-create-own-systemd-services-or-udev-rules"><a href="#It-is-highly-advisable-to-create-own-systemd-services-or-udev-rules" class="headerlink" title="It is highly advisable to create own systemd services or udev rules"></a>It is highly advisable to create own systemd services or udev rules</h1><h1 id="to-run-scripts-during-boot-instead-of-using-this-file"><a href="#to-run-scripts-during-boot-instead-of-using-this-file" class="headerlink" title="to run scripts during boot instead of using this file."></a>to run scripts during boot instead of using this file.</h1><p>#</p>
+<h1 id="In-contrast-to-previous-versions-due-to-parallel-execution-during-boot"><a href="#In-contrast-to-previous-versions-due-to-parallel-execution-during-boot" class="headerlink" title="In contrast to previous versions due to parallel execution during boot"></a>In contrast to previous versions due to parallel execution during boot</h1><h1 id="this-script-will-NOT-be-run-after-all-other-services"><a href="#this-script-will-NOT-be-run-after-all-other-services" class="headerlink" title="this script will NOT be run after all other services."></a>this script will NOT be run after all other services.</h1><p>#</p>
+<h1 id="Please-note-that-you-must-run-‘chmod-x-etc-rc-d-rc-local’-to-ensure"><a href="#Please-note-that-you-must-run-‘chmod-x-etc-rc-d-rc-local’-to-ensure" class="headerlink" title="Please note that you must run ‘chmod +x /etc/rc.d/rc.local’ to ensure"></a>Please note that you must run ‘chmod +x /etc/rc.d/rc.local’ to ensure</h1><h1 id="that-this-script-will-be-executed-during-boot"><a href="#that-this-script-will-be-executed-during-boot" class="headerlink" title="that this script will be executed during boot."></a>that this script will be executed during boot.</h1><p>touch /var/lock/subsys/local</p>
+<p>添加下面一行<br>svnserve -d -r /usr/local/svnRepo/avalon_server<br>保存退出<br>ps aux | grep ‘svn’ 查找所有svn启动的进程<br>杀死，然后启动svn</p>
+<p>svnserve -d -r /usr/local/svnRepo/first 启动svn(可以把这个放到/etc/local/rc.local文件中，实现开机自启动)<br>sudo netstat -anp | grep svnserve //验证是否开启成功</p>
+<p>关闭svnserve<br>sudo pstree | grep svn        #查看</p>
+<p>sudo killall svnserve        #关闭</p>
+<p>SVN版本库起动方式:</p>
+<p>1：单版本库起动    svnserve -d -r /usr/local/svnRepo/test_server<br>2：多版本库起动    svnserve -d -r /usr/local/svnRepo<br>区别在于起动svn时候的命令中的启动参数-r指定的目录。</p>
+<p>连接 svn://47.92.3.188:3690<br>命令行下采用svn checkout  svn://47.92.3.188:3690</p>
+<p>已经过iOS PHP等项目版本控制验证</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+    <div>
+      
+    </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://ygren.github.io/2017/12/22/PVA-Faster-RCNN配置安装及使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -782,7 +979,7 @@ sudo apt-get install python-gi-cairo python-tk
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -793,7 +990,7 @@ sudo apt-get install python-gi-cairo python-tk
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -804,7 +1001,7 @@ sudo apt-get install python-gi-cairo python-tk
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -866,7 +1063,7 @@ sudo apt-get install python-gi-cairo python-tk
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">1.4k</span>
+    <span title="Site words total count">2.0k</span>
   
 </div>
 <div class="powered-by">
