@@ -477,28 +477,16 @@
       
         
           
-            <p>阿里云服务器搭建SVN版本控制工具记录<br>在终端下采用ssh root@47.92.3.188连接我的服务器进入远程主机操作<br>修改阿里云主机名称命令：<br>hostnamectl set-hostname 新主机名</p>
-<p>SVN部署操作<br>检查是否安装地板本SVN：<br>rpm -qa subversion<br>卸载旧版本svn:<br>yum remove subversion<br>安装svn服务器端：<br>yum install subversion<br>执行以下命令：<br>cd /usr/local 进入目录<br>mkdir svnRepo 创建SVN目录<br>chmod -R 777 svnRepo 修改权限777<br>svnadmin create /usr/local/svnRepo/test_server  创建一个svn版本仓库test_server(test_server可以随便取名字）</p>
-<p>cd svnRepo/test_server/conf</p>
-<p>1）修改该目录下三个配置文件<br>vi svnserve.conf<br>把</p>
-<h1 id="anon-access-read"><a href="#anon-access-read" class="headerlink" title="anon-access = read"></a>anon-access = read</h1><h1 id="auth-access-write"><a href="#auth-access-write" class="headerlink" title="auth-access = write"></a>auth-access = write</h1><h1 id="password-db-passwd"><a href="#password-db-passwd" class="headerlink" title="password-db= passwd"></a>password-db= passwd</h1><h1 id="realm-test-server"><a href="#realm-test-server" class="headerlink" title="realm = test_server"></a>realm = test_server</h1><p>前#号和空格去掉，变成<br>anon-access = none //修改成none<br>auth-access = write<br>password-db= passwd<br>realm = test_server //改成自己的版本库<br>保存退出<br>2）vi authz //文件，创建svn组和组用户的权限<br>test_server //创建test_server组，并制定三个用户whl，wxr，ryg<br>[/] //制定根目录下的权限<br>[test_server:/]//制定版本分支目录下的权限<br>@test_server = rw // test_server组用户权限为读写<br>× = r //其他用户只有读权限<br>保存退出<br>3）修改或创建用户密码<br>vi passwd<br>[users]<br>whl = Jitu2017<br>wxr = Jitu2017<br>ryg = Jitu2017<br>保存退出</p>
-<p>设置自启动<br>vi /etc/rc.local //打开自启动文件</p>
-<p>文件内容如下</p>
-<p>#!/bin/bash</p>
-<h1 id="THIS-FILE-IS-ADDED-FOR-COMPATIBILITY-PURPOSES"><a href="#THIS-FILE-IS-ADDED-FOR-COMPATIBILITY-PURPOSES" class="headerlink" title="THIS FILE IS ADDED FOR COMPATIBILITY PURPOSES"></a>THIS FILE IS ADDED FOR COMPATIBILITY PURPOSES</h1><p>#</p>
-<h1 id="It-is-highly-advisable-to-create-own-systemd-services-or-udev-rules"><a href="#It-is-highly-advisable-to-create-own-systemd-services-or-udev-rules" class="headerlink" title="It is highly advisable to create own systemd services or udev rules"></a>It is highly advisable to create own systemd services or udev rules</h1><h1 id="to-run-scripts-during-boot-instead-of-using-this-file"><a href="#to-run-scripts-during-boot-instead-of-using-this-file" class="headerlink" title="to run scripts during boot instead of using this file."></a>to run scripts during boot instead of using this file.</h1><p>#</p>
-<h1 id="In-contrast-to-previous-versions-due-to-parallel-execution-during-boot"><a href="#In-contrast-to-previous-versions-due-to-parallel-execution-during-boot" class="headerlink" title="In contrast to previous versions due to parallel execution during boot"></a>In contrast to previous versions due to parallel execution during boot</h1><h1 id="this-script-will-NOT-be-run-after-all-other-services"><a href="#this-script-will-NOT-be-run-after-all-other-services" class="headerlink" title="this script will NOT be run after all other services."></a>this script will NOT be run after all other services.</h1><p>#</p>
-<h1 id="Please-note-that-you-must-run-‘chmod-x-etc-rc-d-rc-local’-to-ensure"><a href="#Please-note-that-you-must-run-‘chmod-x-etc-rc-d-rc-local’-to-ensure" class="headerlink" title="Please note that you must run ‘chmod +x /etc/rc.d/rc.local’ to ensure"></a>Please note that you must run ‘chmod +x /etc/rc.d/rc.local’ to ensure</h1><h1 id="that-this-script-will-be-executed-during-boot"><a href="#that-this-script-will-be-executed-during-boot" class="headerlink" title="that this script will be executed during boot."></a>that this script will be executed during boot.</h1><p>touch /var/lock/subsys/local</p>
-<p>添加下面一行<br>svnserve -d -r /usr/local/svnRepo/avalon_server<br>保存退出<br>ps aux | grep ‘svn’ 查找所有svn启动的进程<br>杀死，然后启动svn</p>
-<p>svnserve -d -r /usr/local/svnRepo/first 启动svn(可以把这个放到/etc/local/rc.local文件中，实现开机自启动)<br>sudo netstat -anp | grep svnserve //验证是否开启成功</p>
-<p>关闭svnserve<br>sudo pstree | grep svn        #查看</p>
-<p>sudo killall svnserve        #关闭</p>
-<p>SVN版本库起动方式:</p>
-<p>1：单版本库起动    svnserve -d -r /usr/local/svnRepo/test_server<br>2：多版本库起动    svnserve -d -r /usr/local/svnRepo<br>区别在于起动svn时候的命令中的启动参数-r指定的目录。</p>
-<p>连接 svn://47.92.3.188:3690<br>命令行下采用svn checkout  svn://47.92.3.188:3690</p>
-<p>已经过iOS PHP等项目版本控制验证</p>
-
-          
+          阿里云服务器搭建SVN版本控制工具记录在终端下采用ssh root@47.92.3.188连接我的服务器进入远程主机操作修改阿里云主机名称命令：hostnamectl set-hostname 新主机名
+SVN部署操作检查是否安装地板本SVN：rpm -qa subversion卸载旧版本svn:y
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/23/阿里云服务器搭建SVN版本控制工具/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -674,223 +662,15 @@
       
         
           
-            <p>论文：PVANET: Deep but Lightweight Neural Networks for Real-time Object Detection<br>简介<br>PVANET是目前目标检测算法比较好的实现，也是Region Proposal系列方法的一个新实现，目前达到了real-time的单张图像40ms，且在VOC12上达到了精度83.8%，是region proposal目前精度最高的，也突破了region proposal系列方法RCNN、Fast RCNN、Faster RCNN的精度高不能实时的问题。目前回归类方法最新的SSD以及YOLO9000虽然速度很快，但是精度比其差了不少。所以PVANET还是值得实现的。<br>论文地址：<a href="https://www.arxiv.org/pdf/1608.08021v3.pdf" target="_blank" rel="noopener">https://www.arxiv.org/pdf/1608.08021v3.pdf</a><br>github项目:<a href="https://github.com/sanghoon/pva-faster-rcnn" target="_blank" rel="noopener">https://github.com/sanghoon/pva-faster-rcnn</a><br>实现环境<br>操作系统：Ubuntu 16.04LTS<br>显卡：NVIDIA GTX 1080TI<br>CUDA8.0<br>Cudnn V5.1<br>其它配置忽略（不重要）</p>
-<p>Caffe General Dependencies安装</p>
-<pre>
-sudo apt-get update  
-
-sudo apt-get upgrade 
-
-sudo apt-get install -y build-essential cmake git pkg-config
-
-sudo apt-get install -y libprotobuf-dev libleveldb-dev libsnappy-dev libhdf5-serial-dev protobuf-compiler
-
-sudo apt-get install -y libatlas-base-dev 
-
-sudo apt-get install -y --no-install-recommends libboost-all-dev
-
-sudo apt-get install -y libgflags-dev libgoogle-glog-dev liblmdb-dev
-
-(Python general)
-
-sudo apt-get install -y python-pip
-
-\#(Python 2.7 development files)
-
-sudo apt-get install -y python-dev
-
-sudo apt-get install -y python-numpy python-scipy
-
-</pre>
-
-<p>OpenCV安装<br>此处根据git master branch安装的3.2.0-dev版本</p>
-<pre>
-\#Build tools:
-
-sudo apt-get install build-essential
-
-sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
-
-sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev
-
-cd ~
-git clone https://github.com/opencv/opencv.git
-cd opencv
-mkdir build
-cd build
-cmake -D CMAKE_BUILD_TYPE=RELEASE \
-  -D CMAKE_INSTALL_PREFIX=/usr/local \
-  -D WITH_CUDA=ON \
-  -D WITH_CUBLAS=1 \
-  -D INSTALL_PYTHON_EXAMPLES=ON \
-  -D BUILD_EXAMPLES=ON ..
-
-make all -j16（此处根据你自己的计算机性能进行安装）
-sudo make -j16 install
-
-sudo ldconfig
-</pre>
-
-<p>检查安装</p>
-<pre>
-$ python
-
-\>>>import cv2
-
-\>>>cv2.__version__
-
-输出：'3.2.0-dev'
-</pre>
-有关CUDA 8.0+Cudnn5.1的安装请自行百度
-
-pva-faster-rcnn的搭建
-1.获取项目
-<pre><code>git clone --recursive https://github.com/sanghoon/pva-faster-rcnn.git
-</code></pre>
-2.编译建立Cython模块
-安装python依赖
-<pre><code>  
-sudo pip install Cython  
-
-sudo pip install easydict
-
-cd pva-faster-rcnn/lib
-</code></pre>
-此处需要修改lib下的setup.py第135行
-GPU 计算能力查看地址'nvcc': ['-arch=sm_35',
-https://developer.nvidia.com/cuda-gpus
-![](http://upload-images.jianshu.io/upload_images/3478042-7250cd061ba5e39a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-比如我的是1080TI，计算能力为6.1，则修改为
-<pre>
-'nvcc': ['-arch=sm_61',
-</pre>
-执行
-<pre>
-make all -j16
-</pre>
-进行编译
-3.编译建立Caffe和pycaffe
-<pre>
-<code>
-cd pva-faster-rcnn/caffe-fast-rcnn
-
-cp Makefile.config.example Makefile.config
-
-gedit Makefile.config
-</code>
-</pre>
-修改Makefile.config文件:
-需要修改的行如下
-<pre>
-USE_CUDNN := 1
-
-OPENCV_VERSION := 3
-
-#CUDA directory contains bin/ and lib/ directories that we need.
-
-CUDA_DIR := /usr/local/cuda
-
-CUDA_DIR := /usr/local/cuda-8.0
-
-# Whatever else you find you need goes here.
-
-INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial/
-
-LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib /usr/lib/x86_64-Linux-gnu/hdf5/serial/
-
-INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial/
-
-LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib /usr/lib/x86_64-Linux-gnu/hdf5/serial/
-
-#Uncomment to support layers written in Python (will link against Python libs)
-WITH_PYTHON_LAYER := 1
-
-#Uncomment to use `pkg-config` to specify OpenCV library paths.
-
-# (Usually not necessary -- OpenCV libraries are normally installed in one of the above $LIBRARY_DIRS.)
-
-USE_PKG_CONFIG := 1
-
-</pre>
-Makefile修改
-<pre>
-cd ~/pva-faster-rcnn/caffe-faster-rcnn
-
-gedit Makefile
-
-</pre>
-需要注意的是暂时不要采用最新的cudnn v6版本，我使用的时候发觉会出错，v5.1版本修改此配置。
-原有
-<pre>
-<code>
-NVCCFLAGS += -ccbin=$(CXX) -Xcompiler -fPIC $(COMMON_FLAGS)
-</code>
-</pre>
-修改为  
-<pre>
-<code>
-NVCCFLAGS += -D_FORCE_INLINES -ccbin=$(CXX) -Xcompiler -fPIC $(COMMON_FLAGS)  
-</code>
-</pre>
-更新caffe-fast-rcnn的caffe部分，因为此项目caffe不是最新涉及到cudnn的计算会报错。
-<pre>
-# Make sure to clone with --recursive
-cd ~/pva-faster-rcnn/caffe-fast-rcnn
-git remote add -f caffe https://github.com/BVLC/caffe.git
-
-git merge -X theirs caffe/master
-
-gedit include/caffe/layers/python_layer.hpp
-
-\# Remove
-
-self_.attr("phase") = static_cast<int>(this->phase_);
-
-cd ~/pva-faster-rcnn/caffe-faster-rcnn/python
-
-for req in $(cat requirements.txt); do sudo -H pip install $req --upgrade; done
-
-
-</int></pre>
-
-<p>编译安装</p>
-<pre>
-mkdir build
-cd build
-cmake ..
-make -j16 all
-make -j16 pycaffe
-make -j16 install 
-</pre>
-Caffe路径设置
-<pre>
-gedit ~/.bashrc
-export CAFFE_ROOT=~/py-faster-rcnn/caffe-fast-rcnn
-export PYTHONPATH=~/py-faster-rcnn/caffe-fast-rcnn/python:$PYTHONPATH
-source ~/.bashrc
-</pre>
-检查安装
-<pre>
-$ python
->>> import caffe
->>> caffe.__version__
-
-sudo -H pip install easydict
-sudo apt-get install python-gi-cairo python-tk
-
-</pre>
-
-<p>4.下载预训练模型<br>如果有VPN网速好的话直接采用pva-faster-rcnn/models下的的shell脚本进行下载<br>此处采用百度网盘下载<br>链接：<a href="http://pan.baidu.com/s/1kVRRPDd" target="_blank" rel="noopener">http://pan.baidu.com/s/1kVRRPDd</a> 密码：1cdt<br>1、打开文件将test.model放入$pva-faster-rcnn/models/pvanet/full/这个目录下<br>2、将test(1).model重命名为test.model放入$pva-faster-rcnn/models/pvanet/comp/目录下<br>5.voc2007数据集下载<br>打开终端（任何目录）输入：</p>
-<p><pre><br>wget <a href="http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCtrainval_06-Nov-2007.tar" target="_blank" rel="noopener">http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCtrainval_06-Nov-2007.tar</a><br>wget <a href="http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCtest_06-Nov-2007.tar" target="_blank" rel="noopener">http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCtest_06-Nov-2007.tar</a><br>wget <a href="http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCdevkit_08-Jun-2007.tar" target="_blank" rel="noopener">http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCdevkit_08-Jun-2007.tar</a><br></pre><br>解压（严格按照此顺序）：</p>
-<p><pre><br>tar xvf VOCtrainval_06-Nov-2007.tar<br>tar xvf VOCtest_06-Nov-2007.tar<br>tar xvf VOCdevkit_08-Jun-2007.tar<br></pre><br>将生成的VOCdevkit文件夹更名为VOCdevkit2007移动至$pva-faster-rcnn/data/目录下面<br>6.测试<br>需要注意的是缺少test.pt，请将pvanet_obsolete下的对应文件复制过来即可<br>终端输入：</p>
-<p><pre><br>cd $pva-faster-rcnn<br></pre><br>1、full/test.model测试：</p>
-<p><pre><br>./tools/test_net.py –gpu 0 –def models/pvanet/full/test.pt –net models/pvanet/full/test.model –cfg models/pvanet/cfgs/submit_0716.yml<br></pre><br>2、Comp/test.model测试：</p>
-<p><pre><br>./tools/test_net.py –gpu 0 –def models/pvanet/comp/test.pt –net models/pvanet/comp/test.model –cfg models/pvanet/cfgs/submit_0716.yml<br></pre><br>此测试会得到系列类别的AP值<br>3.模型的可视化检测demo<br>此处需要重新编写demo.py文件<br>可在我github下fork的分支获取该文件demo.py文件<br><a href="https://github.com/YgRen/pva-faster-rcnn" target="_blank" rel="noopener">https://github.com/YgRen/pva-faster-rcnn</a></p>
-<p><pre><br>cd pva-faster-rcnn<br></pre><br>执行</p>
-<p><pre><br>./tools/demo.py –gpu 0 –def models/pvanet/comp/test.pt –net models/pvanet/comp/test.model<br></pre><br>生成可视化结果<br><img src="http://upload-images.jianshu.io/upload_images/3478042-05c032f18a6663be.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="执行计算时间"><br><img src="http://upload-images.jianshu.io/upload_images/3478042-043e6b505f3b33bc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="检测结果"></p>
-<p>记录：关于自定义数据集的训练和调参后期会进行发布，关于VOC07和12数据集的训练，直接参照github项目地址操作即可，最近会更新论文精读。</p>
-
-          
+          论文：PVANET: Deep but Lightweight Neural Networks for Real-time Object Detection简介PVANET是目前目标检测算法比较好的实现，也是Region Proposal系列方法的一个新实现，目前达到了real-time的单张图像4
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/22/PVA-Faster-RCNN配置安装及使用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
