@@ -112,7 +112,7 @@
 
 
 
-  <meta name="keywords" content="Y.G Ren,Multi Media Computing,Computer Vision,Developer." />
+  <meta name="keywords" content="深度学习,卷积神经网络,嵌入式神经网络," />
 
 
 
@@ -123,16 +123,33 @@
 
 
 
-<meta name="description" content="种一棵树最好的时间是十年前，其次是现在">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Y.G Ren&#39;Blog">
-<meta property="og:url" content="http://ygren.github.io/tags/深度学习/index.html">
+<meta name="description" content="本文针对移动和嵌入式视觉设备提出一类被称作MobileNets的高效模型。MobileNets是一个使用深度可分解卷积（depthwise separable convolutions）来构建轻量级深度神经网络的精简结构（streamlined architecture，流线型结构 or 精简结构，倾向于后者）。本文引入了两个 简单的全局超参来有效权衡延迟（latency）和准确度（accurac">
+<meta name="keywords" content="深度学习,卷积神经网络,嵌入式神经网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MobileNets论文阅读笔记">
+<meta property="og:url" content="http://ygren.github.io/2017/12/23/MobileNets论文阅读笔记/index.html">
 <meta property="og:site_name" content="Y.G Ren&#39;Blog">
-<meta property="og:description" content="种一棵树最好的时间是十年前，其次是现在">
+<meta property="og:description" content="本文针对移动和嵌入式视觉设备提出一类被称作MobileNets的高效模型。MobileNets是一个使用深度可分解卷积（depthwise separable convolutions）来构建轻量级深度神经网络的精简结构（streamlined architecture，流线型结构 or 精简结构，倾向于后者）。本文引入了两个 简单的全局超参来有效权衡延迟（latency）和准确度（accurac">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/8/24/a299b1cb2672d133c1ecfc374ba82860">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/8/24/5872c8801b28afbc82e8c52ddd0b13c4">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/8/24/89ecd3728facbe2f7ce4e62cca7d3ae7">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/8/24/50786d4f288447e8a1565d6146d04cc0">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/8/24/c3af1cb45fbff2185f8a0c8c1d749462">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/8/24/ca2fb0ba7d61e218bdfb0c00b639ebe9">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/8/24/706d065e3d17cb7aff7cbd2c686eea13">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/8/24/b1cbd2aeb8128db03ca02d37f16273a9">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/8/24/07d827228dbb49463596f293be6eae5e">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/8/24/5a5e34483478008bd2ccd4a3d4b00016">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/8/24/c64a6295473f7e39b7fffdddc334ebe0">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/8/24/884bcad1c206d7f9fab83a2d2ab9b14f">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/8/24/f94909815158ea593467670d3a54c2a7">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/8/24/68dcfb7f1b589ac6733c3d3a3cb7ae00">
+<meta property="og:updated_time" content="2017-12-22T16:22:12.442Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Y.G Ren&#39;Blog">
-<meta name="twitter:description" content="种一棵树最好的时间是十年前，其次是现在">
+<meta name="twitter:title" content="MobileNets论文阅读笔记">
+<meta name="twitter:description" content="本文针对移动和嵌入式视觉设备提出一类被称作MobileNets的高效模型。MobileNets是一个使用深度可分解卷积（depthwise separable convolutions）来构建轻量级深度神经网络的精简结构（streamlined architecture，流线型结构 or 精简结构，倾向于后者）。本文引入了两个 简单的全局超参来有效权衡延迟（latency）和准确度（accurac">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2017/8/24/a299b1cb2672d133c1ecfc374ba82860">
 
 
 
@@ -162,13 +179,13 @@
 
 
 
-  <link rel="canonical" href="http://ygren.github.io/tags/深度学习/"/>
+  <link rel="canonical" href="http://ygren.github.io/2017/12/23/MobileNets论文阅读笔记/"/>
 
 
 
 
 
-  <title>Tag: 深度学习 | Y.G Ren'Blog</title>
+  <title>MobileNets论文阅读笔记 | Y.G Ren'Blog</title>
   
 
 
@@ -197,7 +214,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -335,99 +352,265 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>深度学习<small>Tag</small>
-        </h1>
-      </div>
+  
 
-      
-      
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://ygren.github.io/2017/12/23/MobileNets论文阅读笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Y.G Ren">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/timg.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Y.G Ren'Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MobileNets论文阅读笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-23T00:19:12+08:00">
+                2017-12-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算机视觉/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机视觉</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
- 
+
           
             
-               <div class="collection-title">
-                  <h2 class="archive-year motion-element" id="archive-year-2017">2017</h2>
+          
+
+          
+          
+             <span id="/2017/12/23/MobileNets论文阅读笔记/" class="leancloud_visitors" data-flag-title="MobileNets论文阅读笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,429
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+              <div class="post-description">
+                  本文针对移动和嵌入式视觉设备提出一类被称作MobileNets的高效模型。MobileNets是一个使用深度可分解卷积（depthwise separable convolutions）来构建轻量级深度神经网络的精简结构（streamlined architecture，流线型结构 or 精简结构，倾向于后者）。本文引入了两个 简单的全局超参来有效权衡延迟（latency）和准确度（accuracy）。这些超参允许模型构建者根据具体问题的限制为他们的应用选择规模合适的模型。在资源和准确度的权衡条件下进行广泛的实验，与ImageNet分类任务的其它主流模型相比较，本文的模型显示出很好的性能。然后 ，本文在一系列的应用和用例下验证了其有效性，包括：目标检测、细粒度分类、人脸属性提取和 大规模地理定位。
               </div>
           
-          
-        
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+        </div>
+      </header>
+    
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/23/MobileNets论文阅读笔记/" itemprop="url">
-              
-                <span itemprop="name">MobileNets论文阅读笔记</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-23T00:19:12+08:00"
-              content="2017-12-23" >
-          12-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
       
-          
-          
- 
-          
-          
-        
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/22/PVA-Faster-RCNN配置安装及使用/" itemprop="url">
-              
-                <span itemprop="name">PVA Faster RCNN配置安装及使用</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-22T23:19:00+08:00"
-              content="2017-12-22" >
-          12-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
+        <p>移动和嵌入式设备视觉应用的高效卷积神经网络模型：MobileNets<br>论文地址：<a href="https://arxiv.org/abs/1704.04861" target="_blank" rel="noopener">https://arxiv.org/abs/1704.04861</a></p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/8/24/a299b1cb2672d133c1ecfc374ba82860" alt="文章作者情况"></p>
+<p>摘要<br>本文针对移动和嵌入式视觉设备提出一类被称作MobileNets的高效模型。MobileNets是一个使用深度可分解卷积（depthwise separable convolutions）来构建轻量级深度神经网络的精简结构（streamlined architecture，流线型结构 or 精简结构，倾向于后者）。本文引入了两个 简单的全局超参来有效权衡延迟（latency）和准确度（accuracy）。这些超参允许模型构建者根据具体问题的限制为他们的应用选择规模合适的模型。在资源和准确度的权衡条件下进行广泛的实验，与ImageNet分类任务的其它主流模型相比较，本文的模型显示出很好的性能。然后 ，本文在一系列的应用和用例下验证了其有效性，包括：目标检测、细粒度分类、人脸属性提取和 大规模地理定位。</p>
+<p>1.引言</p>
+<p>自从AlexNet在ILSVRC2012利用深度卷积神经网络赢得ImageNet挑战赛以来，卷积神经网络（CNN）在计算机视觉领域被广泛使用。这方面的应用主流趋势是采用更深、更复杂的网络实现更高的精度。但是，考虑到模型大小和速度。精度的提升并不一定使网络更加高效。在很多实际的应用场景，如机器人、自动驾驶和 增强现实，这些识别任务需要在计算资源限制的平台实时地运行。<br> 本文提出了一个高效的网络结构和一组两个超参，用以构建较小的、低延迟模型，从而能比较好的满足移动和 嵌入式视觉应用的设计要求。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/8/24/5872c8801b28afbc82e8c52ddd0b13c4" alt="MobileNet可用于各种识别 任务，并部署在智能设备上高效执行"></p>
+<p>2.背景介绍<br>在最近的文献中，关于建立小型高效的神经网络的研究日益增加。一般说来，这些方法可以归为两类，压缩预训练模型和直接训练小网络模型。本文提出了一类允许模型开发人员选择与其应用程序的资源限制（延迟，大小）相匹配的小型网络架构。MobileNets主要侧重于优化延迟，但也能够产生小型网络。很多关于小型网络的论文只关注大小，却不考虑速度问题。<br>记录：需要注意的是目前在应用于移动和嵌入式设备的深度学习 网络研究主要有两个方向：<br>1）直接设计较小且高效的网络，并训练。本文属于这方面，另外比较经典的如GoogleNet提出Inception思想，采用小卷积。Network in Network 改进传统CNN，使用1x1卷积，提出MLP CONV层Deep Fried Convents采用Adaptive Fast-food transform重新 参数化全连接层的向量矩阵。SqueezeNet设计目标主要是为了简化CNN的模型参数数量，主要采用了替换卷积核3x3为1x1，使用了deep compression技术对网络进行了压缩 。Flattened networks针对快速前馈执行设计的扁平神经网络。<br>2）对预训练模型进行压缩小、分解或者压缩。采用hashing trick进行压缩；采用huffman编码；用大网络来教小网络；训练低精度乘法器；采用二进制输入二进制权值等等。</p>
+<p>3.MobileNet 架构<br>首先描述了使用深度可分解滤波（depth wise separable filters）建立的MobileNets核心层；然后介绍了MobileNet的网络结构，并且总结了两个模型收缩超参：宽度乘法器和分辨率乘法器（width multiplier和resolution multiplier）。<br>3.1.深度可分解卷积（Depthwise Separable Convolution）<br>MobileNet模型机遇深度可分解卷积，其可以将标准卷积分解成 一个深度卷积和一个1x1的点卷积。<br>3.2. 网络结构和训练<br>3.3.宽度乘法器（Width Multiplier）<br>3.4. 分辨率乘法器（Resolution Multiplier）</p>
+<p>此部分待更新</p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/8/24/89ecd3728facbe2f7ce4e62cca7d3ae7" alt=""></p>
+<p>4.实验<br>  本节首先调查了深度卷积（ depthwise convolution）的影响，以及通过减小网络宽度 而不是减少层数来选择压缩的 模型。然后基于两个超参：宽度乘法器和分辨率乘法器（width multiplier和resolution multiplier）进行网络收缩，并把其和现阶段主流的模型进行比较。研究结果表明MobileNet可以应用于许多不同的任务。<br>4.1模型选择</p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/8/24/50786d4f288447e8a1565d6146d04cc0" alt=""><br>首先比较了深度可分解卷积的MobileNet和全卷积的模型，如表4所示 ，使用深度可分解 卷积和全卷积相比，在ImageNet的精确度只下降了1%，但是Mult-Adds和参数大大节省。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/8/24/c3af1cb45fbff2185f8a0c8c1d749462" alt=""><br>表5显示，在计算和参数数量相似时，更浅的模型比更小的模型精度低3%。</p>
+<p>4.2.模型超参收缩<br><img src="https://user-gold-cdn.xitu.io/2017/8/24/ca2fb0ba7d61e218bdfb0c00b639ebe9" alt=""></p>
+<p>表6显示宽度乘法器（width multiplier）超参α减小时，模型准确率随模型的变小而下降。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/8/24/706d065e3d17cb7aff7cbd2c686eea13" alt=""></p>
+<p>表7 显示分辨率乘法器（resolution multiplier）超参ρ 减小时，模型准确率随模型的分辨率变小而降低。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/8/24/b1cbd2aeb8128db03ca02d37f16273a9" alt=""><br><img src="https://user-gold-cdn.xitu.io/2017/8/24/07d827228dbb49463596f293be6eae5e" alt=""><br><img src="https://user-gold-cdn.xitu.io/2017/8/24/5a5e34483478008bd2ccd4a3d4b00016" alt="88.png"><br>表8中将MobileNet和GoogleNet、VGG16进行了比较。<br>表9比较了两个超参的变化<br>4.3.细粒度识别任务<br>本文在Stanford Dogs数据集上训练了MobileNet以应对细粒度识别任务。本文扩展了指定对比方法［19］并且收集了一个更大且包含更多噪声的数据集超过了指定方法［18］的规模。采用了网络噪声数据去预训练细粒度分类狗的 识别模型，然后在Stanford Dogs训练集上进行微调。结果如表10。MobileNet能够在极大的较少计算和尺寸的情况下获得接近于［18］的结果。<br>4.4.大规模地理定位<br>PlaNet的任务是用于确定在一张照片在哪个地理位置进行拍摄的分类问题。该方法将地球划分进一个个网格单元集合到目标类别，用数百万计的有地理位置标记的图片训练卷积 神经网络。PlaNet已经能够成功对各种各样的照片进行地理位置标记，并且处理相同任务性能超过了Im2GPS。<br>在相同的数据上采用MobileNet架构重新训练PlaNet，其结果如表11所示，MobileNet版本和PlaNet相比，规模小了 很多，性能只降低了很少，据此来说，其仍然超过了Im2GPS<br>4.5.人脸属性提取<br><img src="https://user-gold-cdn.xitu.io/2017/8/24/c64a6295473f7e39b7fffdddc334ebe0" alt=""></p>
+<p>MobileNet的另一个应用场景是压缩具有未知且复杂训练程序的大型系统。在人脸属性分类任务中，我们证明了MobileNet和distillation间的协同关系，一种针对深度网络的知识迁移技术。我们试图去简化一个具有7500万参数和16亿Mult-Adds大型人脸属性分类器。该分类器在一个类似于YFCC100M的多属性数据集上进行训练。<br>采用MobileNet架构去提取一个人脸属性分类器。distillation是通过训练分类器模型一个更大的模型输出，而不是采用人工标注，因而能够从大型（无限大潜在可能）未标注数据集训练。结合distillation的可扩展性和MobileNet的简洁参数化，终端系统不仅不要求正则化，而去反而表现出更好的性能。如表12。<br>4.6.目标检测<br>MobileNet也能够作为一个高效的基网络被部署到现代目标检测系统。基于最近2016 COCO挑战赛的获胜者的工作，我们应对目标检测任务在COCO数据集上训练了MobileNet，并进行了比较。表13列出了在Faster RCNN和SDD框架下，MobileNet、VGG以及Inception V2的比较。实验中，SSD以300的输入分辨率于分别是300和600输入分辨率的 Faster RCNN进行比较，在两个框架下，Mobile Net性能不低于其它两个网络结果，且计算复杂性和模型都相对更小。</p>
+<p>记录：此处感觉采用VOT  Challenge 的数据集能够更有效客观的进行目标检测的结果评测，不知道为什么采用了COCO。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/8/24/884bcad1c206d7f9fab83a2d2ab9b14f" alt=""></p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/8/24/f94909815158ea593467670d3a54c2a7" alt=""></p>
+<p>4.7.Face Embeddings<br>FaceNet是目前state-of-art的人脸识别模型，它基于triplet loss建立face Embedding。为了建立移动FaceNet模型，我们采用distillation通过最小化FaceNet和MobileNet在训练数据上的平方差（squared differences ）来训练。表15可以看到非常小的MobileNet模型结果。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2017/8/24/68dcfb7f1b589ac6733c3d3a3cb7ae00" alt=""></p>
+<p>5.总结<br>本文提出了一个基于深度可分解卷积（depthwise separable convolutions）的新模型架构MobileNets。分析了 决定高效模型的重要设计思路。然后，本文讲解了如何使用宽度乘法器（width multiplier）和分辨率乘法器（resolution multiplier），通过权衡较为可靠的精确度来减小尺寸大小和延迟时间，来构建更小更快的MobileNets。将不同的MobileNets和主流的模型进行比较，展现了 MobileNets在大小、速度和精确度这些特性都具有明显优势。最后，我们通过一系列任务的应用，验证了MobileNets的广泛适用性。下一步，本文的计划是在TensorFlow发布他们的模型。</p>
+<p>记录：MobileNet应该是目前在设计小网络方向性能比较比较比较好的论文，论文中并看不出其具体的fps的数据，也是论文的缺憾，不过预计应该会有不错的性能。其也是深度学习网络应用到嵌入式和移动设备的一个比较好的参照。</p>
 
       
     </div>
+    
+    
+    
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2017/12/23/MobileNets论文阅读笔记/">MobileNets论文阅读笔记</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 Y.G Ren 的个人博客">Y.G Ren</a></p>
+  <p><span>发布时间:</span>2017年12月23日 - 00:12</p>
+  <p><span>最后更新:</span>2017年12月23日 - 00:12</p>
+  <p><span>原始链接:</span><a href="/2017/12/23/MobileNets论文阅读笔记/" title="MobileNets论文阅读笔记">http://ygren.github.io/2017/12/23/MobileNets论文阅读笔记/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://ygren.github.io/2017/12/23/MobileNets论文阅读笔记/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({   
+          title: "",   
+          text: '复制成功',
+          icon: "success", 
+          showConfirmButton: true
+          });
+        });
+    });  
+</script>
 
+      
+    </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/深度学习/" rel="tag"><i class="fa fa-tag"></i> 深度学习</a>
+          
+            <a href="/tags/卷积神经网络/" rel="tag"><i class="fa fa-tag"></i> 卷积神经网络</a>
+          
+            <a href="/tags/嵌入式神经网络/" rel="tag"><i class="fa fa-tag"></i> 嵌入式神经网络</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/23/阿里云服务器搭建SVN版本控制工具/" rel="next" title="阿里云服务器搭建SVN版本控制工具">
+                <i class="fa fa-chevron-left"></i> 阿里云服务器搭建SVN版本控制工具
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -435,6 +618,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -539,9 +726,6 @@
 
     </div>
   </aside>
-
-  
-  
 
 
         
@@ -685,6 +869,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
@@ -1166,26 +1354,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
