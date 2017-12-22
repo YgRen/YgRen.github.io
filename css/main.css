@@ -1130,13 +1130,15 @@ pre .javascript .function {
   vertical-align: top;
   line-height: 36px;
   font-size: 24px;
+  font-weight: bold;
   font-weight: normal;
   font-family: 'Lobster Two', 'Roboto', "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 .site-subtitle {
   margin-top: 10px;
+  font-weight: bold;
   font-size: 13px;
-  color: #999;
+  color: #000;
 }
 .use-motion .brand {
   opacity: 0;
@@ -1878,7 +1880,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #e2f473;
+  background: #1f39d4;
 }
 .links-of-blogroll {
   font-size: 13px;
