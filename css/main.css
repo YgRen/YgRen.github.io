@@ -1131,7 +1131,6 @@ pre .javascript .function {
   line-height: 36px;
   font-size: 24px;
   font-weight: bold;
-  font-weight: normal;
   font-family: 'Lobster Two', 'Roboto', "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 .site-subtitle {
@@ -1880,7 +1879,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #fff67c;
+  background: #e4ff78;
 }
 .links-of-blogroll {
   font-size: 13px;
