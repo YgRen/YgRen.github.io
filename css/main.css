@@ -1113,7 +1113,7 @@ pre .javascript .function {
   display: inline-block;
   padding: 0 40px;
   color: #fff;
-  background: #222;
+  background: transparent;
   border-bottom: none;
 }
 .brand:hover {
@@ -1873,7 +1873,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #0eff75;
+  background: #3949a3;
 }
 .links-of-blogroll {
   font-size: 13px;
