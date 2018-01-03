@@ -112,7 +112,7 @@
 
 
 
-  <meta name="keywords" content="计算机视觉,目标检测,深度学习," />
+  <meta name="keywords" content="深度学习,计算机视觉,目标检测," />
 
 
 
@@ -124,7 +124,7 @@
 
 
 <meta name="description" content="论文地址：https://arxiv.org/pdf/1311.2524.pdf项目地址：https://github.com/rbgirshick/rcnnRCNN 可以说是采用深度学习来解决目标检测任务的开山之作。发表于2014年发表于计算机视觉三大顶会之一CVPR上，作者Ross Girshick多次在PASCAL VOC 的目标检测竞赛中获得很好的成绩，是继DPM方法多年平台期过后，取得显">
-<meta name="keywords" content="计算机视觉,目标检测,深度学习">
+<meta name="keywords" content="深度学习,计算机视觉,目标检测">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RCNN算法笔记">
 <meta property="og:url" content="https://ygren.github.io/2017/12/24/RCNN算法笔记/index.html">
@@ -143,8 +143,8 @@
 <meta property="og:image" content="https://ygren.github.io/imgs/RCNN9.jpg">
 <meta property="og:image" content="https://ygren.github.io/imgs/RCNN10.jpg">
 <meta property="og:image" content="https://ygren.github.io/imgs/RCNN11.jpg">
-<meta property="og:image" content="https://ygren.github.io/2017/12/24/RCNN算法笔记/1514902003821.png">
-<meta property="og:updated_time" content="2018-01-03T01:52:36.335Z">
+<meta property="og:image" content="https://ygren.github.io/imgs/RCNN12.jpg">
+<meta property="og:updated_time" content="2018-01-03T02:08:13.602Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RCNN算法笔记">
 <meta name="twitter:description" content="论文地址：https://arxiv.org/pdf/1311.2524.pdf项目地址：https://github.com/rbgirshick/rcnnRCNN 可以说是采用深度学习来解决目标检测任务的开山之作。发表于2014年发表于计算机视觉三大顶会之一CVPR上，作者Ross Girshick多次在PASCAL VOC 的目标检测竞赛中获得很好的成绩，是继DPM方法多年平台期过后，取得显">
@@ -524,7 +524,7 @@
 <p><strong>SVM训练、测试阶段</strong></p>
 <p>训练阶段：</p>
 <p>这是一个二分类问题，我么假设我们要检测车辆。我们知道只有当bounding box把整量车都包含在内，那才叫正样本；如果bounding box 没有包含到车辆，那么我们就可以把它当做负样本。但问题是当我们的检测窗口只有部分包含物体，那该怎么定义正负样本呢？作者测试了IOU阈值各种方案数值0,0.1,0.2,0.3,0.4,0.5。最后通过训练发现，如果选择IOU阈值为0.3效果最好（选择为0精度下降了4个百分点，选择0.5精度下降了5个百分点）,即当重叠度小于0.3的时候，我们就把它标注为负样本。一旦CNN f7层特征被提取出来，那么我们将为每个物体类训练一个svm分类器。当我们用CNN提取2000个候选框，可以得到2000<em>4096这样的特征向量矩阵，然后我们只需要把这样的一个矩阵与svm权值矩阵4096</em>N点乘(N为分类类别数目，因为我们训练的N个svm，每个svm包含了4096个权值w)，就可以得到结果了。<br><img src="/imgs/RCNN11.jpg" alt="Alt text"><br>得到的特征输入到SVM进行分类看看这个feature vector所对应的region proposal是需要的物体还是无关的实物(background) 。 排序，canny边界检测之后就得到了我们需要的bounding-box。</p>
-<p>再回顾总结一下：整个系统分为三个部分：1.产生不依赖与特定类别的region proposals，这些region proposals定义了一个整个检测器可以获得的候选目标2.一个大的卷积神经网络，对每个region产生一个固定长度的特征向量3.一系列特定类别的线性SVM分类器。<br>位置精修： 目标检测问题的衡量标准是重叠面积：许多看似准确的检测结果，往往因为候选框不够准确，重叠面积很小。故需要一个位置精修步骤。 回归器：对每一类目标，使用一个线性脊回归器进行精修。正则项λ=10000。 输入为深度网络pool5层的4096维特征，输出为xy方向的缩放和平移。 训练样本：判定为本类的候选框中和真值重叠面积大于0.6的候选框。<br><img src="./1514902003821.png" alt="Alt text"><br>测试阶段：</p>
+<p>再回顾总结一下：整个系统分为三个部分：1.产生不依赖与特定类别的region proposals，这些region proposals定义了一个整个检测器可以获得的候选目标2.一个大的卷积神经网络，对每个region产生一个固定长度的特征向量3.一系列特定类别的线性SVM分类器。<br>位置精修： 目标检测问题的衡量标准是重叠面积：许多看似准确的检测结果，往往因为候选框不够准确，重叠面积很小。故需要一个位置精修步骤。 回归器：对每一类目标，使用一个线性脊回归器进行精修。正则项λ=10000。 输入为深度网络pool5层的4096维特征，输出为xy方向的缩放和平移。 训练样本：判定为本类的候选框中和真值重叠面积大于0.6的候选框。<br><img src="/imgs/RCNN12.jpg" alt="Alt text"><br>测试阶段：</p>
 <p>使用selective search的方法在测试图片上提取2000个region propasals ，将每个region proposals归一化到227x227，然后再CNN中正向传播，将最后一层得到的特征提取出来。然后对于每一个类别，使用为这一类训练的SVM分类器对提取的特征向量进行打分，得到测试图片中对于所有region proposals的对于这一类的分数，再使用贪心的非极大值抑制（NMS）去除相交的多余的框。再对这些框进行canny边缘检测，就可以得到bounding-box(then B-BoxRegression)。</p>
 <p>（非极大值抑制（NMS）先计算出每一个bounding box的面积，然后根据score进行排序，把score最大的bounding box作为选定的框，计算其余bounding box与当前最大score与box的IoU，去除IoU大于设定的阈值的bounding box。然后重复上面的过程，直至候选bounding box为空，然后再将score小于一定阈值的选定框删除得到这一类的结果（然后继续进行下一个分类）。作者提到花费在region propasals和提取特征的时间是13s/张-GPU和53s/张-CPU，可以看出时间还是很长的，不能够达到及时性。</p>
 
@@ -545,7 +545,7 @@
   <p><span>本文标题:</span><a href="/2017/12/24/RCNN算法笔记/">RCNN算法笔记</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Y.G Ren 的个人博客">Y.G Ren</a></p>
   <p><span>发布时间:</span>2017年12月24日 - 00:12</p>
-  <p><span>最后更新:</span>2018年01月03日 - 09:01</p>
+  <p><span>最后更新:</span>2018年01月03日 - 10:01</p>
   <p><span>原始链接:</span><a href="/2017/12/24/RCNN算法笔记/" title="RCNN算法笔记">https://ygren.github.io/2017/12/24/RCNN算法笔记/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://ygren.github.io/2017/12/24/RCNN算法笔记/"  aria-label="复制成功！"></i></span>
   </p>
@@ -577,11 +577,11 @@
       
         <div class="post-tags">
           
+            <a href="/tags/深度学习/" rel="tag"><i class="fa fa-tag"></i> 深度学习</a>
+          
             <a href="/tags/计算机视觉/" rel="tag"><i class="fa fa-tag"></i> 计算机视觉</a>
           
             <a href="/tags/目标检测/" rel="tag"><i class="fa fa-tag"></i> 目标检测</a>
-          
-            <a href="/tags/深度学习/" rel="tag"><i class="fa fa-tag"></i> 深度学习</a>
           
         </div>
       
