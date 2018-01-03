@@ -684,13 +684,31 @@ sudo apt-get install python-gi-cairo python-tk
 </pre>
 
 <p>4.下载预训练模型<br>如果有VPN网速好的话直接采用pva-faster-rcnn/models下的的shell脚本进行下载<br>此处采用百度网盘下载<br>链接：<a href="http://pan.baidu.com/s/1kVRRPDd" target="_blank" rel="noopener">http://pan.baidu.com/s/1kVRRPDd</a> 密码：1cdt<br>1、打开文件将test.model放入$pva-faster-rcnn/models/pvanet/full/这个目录下<br>2、将test(1).model重命名为test.model放入$pva-faster-rcnn/models/pvanet/comp/目录下<br>5.voc2007数据集下载<br>打开终端（任何目录）输入：</p>
-<p><pre><br>wget <a href="http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCtrainval_06-Nov-2007.tar" target="_blank" rel="noopener">http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCtrainval_06-Nov-2007.tar</a><br>wget <a href="http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCtest_06-Nov-2007.tar" target="_blank" rel="noopener">http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCtest_06-Nov-2007.tar</a><br>wget <a href="http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCdevkit_08-Jun-2007.tar" target="_blank" rel="noopener">http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCdevkit_08-Jun-2007.tar</a><br></pre><br>解压（严格按照此顺序）：</p>
-<p><pre><br>tar xvf VOCtrainval_06-Nov-2007.tar<br>tar xvf VOCtest_06-Nov-2007.tar<br>tar xvf VOCdevkit_08-Jun-2007.tar<br></pre><br>将生成的VOCdevkit文件夹更名为VOCdevkit2007移动至$pva-faster-rcnn/data/目录下面<br>6.测试<br>需要注意的是缺少test.pt，请将pvanet_obsolete下的对应文件复制过来即可<br>终端输入：</p>
-<p><pre><br>cd $pva-faster-rcnn<br></pre><br>1、full/test.model测试：</p>
-<p><pre><br>./tools/test_net.py –gpu 0 –def models/pvanet/full/test.pt –net models/pvanet/full/test.model –cfg models/pvanet/cfgs/submit_0716.yml<br></pre><br>2、Comp/test.model测试：</p>
-<p><pre><br>./tools/test_net.py –gpu 0 –def models/pvanet/comp/test.pt –net models/pvanet/comp/test.model –cfg models/pvanet/cfgs/submit_0716.yml<br></pre><br>此测试会得到系列类别的AP值<br>3.模型的可视化检测demo<br>此处需要重新编写demo.py文件<br>可在我github下fork的分支获取该文件demo.py文件<br><a href="https://github.com/YgRen/pva-faster-rcnn" target="_blank" rel="noopener">https://github.com/YgRen/pva-faster-rcnn</a></p>
-<p><pre><br>cd pva-faster-rcnn<br></pre><br>执行</p>
-<p><pre><br>./tools/demo.py –gpu 0 –def models/pvanet/comp/test.pt –net models/pvanet/comp/test.model<br></pre><br>生成可视化结果<br><img src="http://upload-images.jianshu.io/upload_images/3478042-05c032f18a6663be.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="执行计算时间"><br><img src="http://upload-images.jianshu.io/upload_images/3478042-043e6b505f3b33bc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="检测结果"></p>
+<p><pre>
+wget http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCtrainval_06-Nov-2007.tar
+wget http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCtest_06-Nov-2007.tar
+wget http://host.robots.ox.ac.uk/pascal/VOC/voc2007/VOCdevkit_08-Jun-2007.tar
+</pre><br>解压（严格按照此顺序）：</p>
+<p><pre>
+tar xvf VOCtrainval_06-Nov-2007.tar
+tar xvf VOCtest_06-Nov-2007.tar
+tar xvf VOCdevkit_08-Jun-2007.tar
+</pre><br>将生成的VOCdevkit文件夹更名为VOCdevkit2007移动至$pva-faster-rcnn/data/目录下面<br>6.测试<br>需要注意的是缺少test.pt，请将pvanet_obsolete下的对应文件复制过来即可<br>终端输入：</p>
+<p><pre>
+cd $pva-faster-rcnn
+</pre><br>1、full/test.model测试：</p>
+<p><pre>
+./tools/test_net.py --gpu 0 --def models/pvanet/full/test.pt --net models/pvanet/full/test.model --cfg models/pvanet/cfgs/submit_0716.yml
+</pre><br>2、Comp/test.model测试：</p>
+<p><pre>
+./tools/test_net.py --gpu 0 --def models/pvanet/comp/test.pt --net models/pvanet/comp/test.model --cfg models/pvanet/cfgs/submit_0716.yml
+</pre><br>此测试会得到系列类别的AP值<br>3.模型的可视化检测demo<br>此处需要重新编写demo.py文件<br>可在我github下fork的分支获取该文件demo.py文件<br><a href="https://github.com/YgRen/pva-faster-rcnn" target="_blank" rel="noopener">https://github.com/YgRen/pva-faster-rcnn</a></p>
+<p><pre>
+cd pva-faster-rcnn
+</pre><br>执行</p>
+<p><pre>
+./tools/demo.py --gpu 0 --def models/pvanet/comp/test.pt --net models/pvanet/comp/test.model
+</pre><br>生成可视化结果<br><img src="http://upload-images.jianshu.io/upload_images/3478042-05c032f18a6663be.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="执行计算时间"><br><img src="http://upload-images.jianshu.io/upload_images/3478042-043e6b505f3b33bc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="检测结果"></p>
 <p>记录：关于自定义数据集的训练和调参后期会进行发布，关于VOC07和12数据集的训练，直接参照github项目地址操作即可，最近会更新论文精读。</p>
 
       
@@ -931,7 +949,7 @@ sudo apt-get install python-gi-cairo python-tk
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">15.1k</span>
+    <span title="Site words total count">14.9k</span>
   
 </div>
 <div class="powered-by">
