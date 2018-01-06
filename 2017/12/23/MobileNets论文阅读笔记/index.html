@@ -144,8 +144,8 @@
 <meta property="og:image" content="https://ygren.github.io/imgs/MobileNets11.jpg">
 <meta property="og:image" content="https://ygren.github.io/imgs/MobileNets12.jpg">
 <meta property="og:image" content="https://ygren.github.io/imgs/MobileNets13.jpg">
-<meta property="og:image" content="https://ygren.github.io/imgs/MobileNets14.jpg">
-<meta property="og:updated_time" content="2018-01-06T16:59:42.227Z">
+<meta property="og:image" content="https://ygren.github.io/imgs/MobileNets13.jpg">
+<meta property="og:updated_time" content="2018-01-06T17:04:40.796Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MobileNets论文阅读笔记">
 <meta name="twitter:description" content="移动和嵌入式设备视觉应用的高效卷积神经网络模型：MobileNets论文地址：https://arxiv.org/abs/1704.04861  摘要本文针对移动和嵌入式视觉设备提出一类被称作MobileNets的高效模型。MobileNets是一个使用深度可分解卷积（depthwise separable convolutions）来构建轻量级深度神经网络的精简结构（streamlined ar">
@@ -512,13 +512,13 @@
 <p>表6显示宽度乘法器（width multiplier）超参α减小时，模型准确率随模型的变小而下降。</p>
 <p><img src="/imgs/MobileNets7.jpg" alt=""></p>
 <p>表7 显示分辨率乘法器（resolution multiplier）超参ρ 减小时，模型准确率随模型的分辨率变小而降低。</p>
-<p><img src="/imgs/MobileNets8.jpg" alt=""><br><img src="/imgs/MobileNets9.jpg" alt=""><br><img src="/imgs/MobileNets10.jpg" alt="88.png"><br>表8中将MobileNet和GoogleNet、VGG16进行了比较。<br>表9比较了两个超参的变化<br>4.3.细粒度识别任务<br>本文在Stanford Dogs数据集上训练了MobileNet以应对细粒度识别任务。本文扩展了指定对比方法［19］并且收集了一个更大且包含更多噪声的数据集超过了指定方法［18］的规模。采用了网络噪声数据去预训练细粒度分类狗的 识别模型，然后在Stanford Dogs训练集上进行微调。结果如表10。MobileNet能够在极大的较少计算和尺寸的情况下获得接近于［18］的结果。<br>4.4.大规模地理定位<br>PlaNet的任务是用于确定在一张照片在哪个地理位置进行拍摄的分类问题。该方法将地球划分进一个个网格单元集合到目标类别，用数百万计的有地理位置标记的图片训练卷积 神经网络。PlaNet已经能够成功对各种各样的照片进行地理位置标记，并且处理相同任务性能超过了Im2GPS。<br>在相同的数据上采用MobileNet架构重新训练PlaNet，其结果如表11所示，MobileNet版本和PlaNet相比，规模小了 很多，性能只降低了很少，据此来说，其仍然超过了Im2GPS<br>4.5.人脸属性提取<br><img src="/imgs/MobileNets11.jpg" alt=""></p>
+<p><img src="/imgs/MobileNets8.jpg" alt=""><br><img src="/imgs/MobileNets9.jpg" alt=""><br><img src="/imgs/MobileNets10.jpg" alt=""><br>表8中将MobileNet和GoogleNet、VGG16进行了比较。<br>表9比较了两个超参的变化<br>4.3.细粒度识别任务<br>本文在Stanford Dogs数据集上训练了MobileNet以应对细粒度识别任务。本文扩展了指定对比方法［19］并且收集了一个更大且包含更多噪声的数据集超过了指定方法［18］的规模。采用了网络噪声数据去预训练细粒度分类狗的 识别模型，然后在Stanford Dogs训练集上进行微调。结果如表10。MobileNet能够在极大的较少计算和尺寸的情况下获得接近于［18］的结果。<br>4.4.大规模地理定位<br>PlaNet的任务是用于确定在一张照片在哪个地理位置进行拍摄的分类问题。该方法将地球划分进一个个网格单元集合到目标类别，用数百万计的有地理位置标记的图片训练卷积 神经网络。PlaNet已经能够成功对各种各样的照片进行地理位置标记，并且处理相同任务性能超过了Im2GPS。<br>在相同的数据上采用MobileNet架构重新训练PlaNet，其结果如表11所示，MobileNet版本和PlaNet相比，规模小了 很多，性能只降低了很少，据此来说，其仍然超过了Im2GPS<br>4.5.人脸属性提取<br><img src="/imgs/MobileNets11.jpg" alt=""></p>
 <p>MobileNet的另一个应用场景是压缩具有未知且复杂训练程序的大型系统。在人脸属性分类任务中，我们证明了MobileNet和distillation间的协同关系，一种针对深度网络的知识迁移技术。我们试图去简化一个具有7500万参数和16亿Mult-Adds大型人脸属性分类器。该分类器在一个类似于YFCC100M的多属性数据集上进行训练。<br>采用MobileNet架构去提取一个人脸属性分类器。distillation是通过训练分类器模型一个更大的模型输出，而不是采用人工标注，因而能够从大型（无限大潜在可能）未标注数据集训练。结合distillation的可扩展性和MobileNet的简洁参数化，终端系统不仅不要求正则化，而去反而表现出更好的性能。如表12。<br>4.6.目标检测<br>MobileNet也能够作为一个高效的基网络被部署到现代目标检测系统。基于最近2016 COCO挑战赛的获胜者的工作，我们应对目标检测任务在COCO数据集上训练了MobileNet，并进行了比较。表13列出了在Faster RCNN和SDD框架下，MobileNet、VGG以及Inception V2的比较。实验中，SSD以300的输入分辨率于分别是300和600输入分辨率的 Faster RCNN进行比较，在两个框架下，Mobile Net性能不低于其它两个网络结果，且计算复杂性和模型都相对更小。</p>
 <p>记录：此处感觉采用VOT  Challenge 的数据集能够更有效客观的进行目标检测的结果评测，不知道为什么采用了COCO。</p>
 <p><img src="/imgs/MobileNets12.jpg" alt=""></p>
 <p><img src="/imgs/MobileNets13.jpg" alt=""></p>
 <p>4.7.Face Embeddings<br>FaceNet是目前state-of-art的人脸识别模型，它基于triplet loss建立face Embedding。为了建立移动FaceNet模型，我们采用distillation通过最小化FaceNet和MobileNet在训练数据上的平方差（squared differences ）来训练。表15可以看到非常小的MobileNet模型结果。</p>
-<p><img src="/imgs/MobileNets14.jpg" alt=""></p>
+<p><img src="/imgs/MobileNets13.jpg" alt=""></p>
 <p>5.总结<br>本文提出了一个基于深度可分解卷积（depthwise separable convolutions）的新模型架构MobileNets。分析了 决定高效模型的重要设计思路。然后，本文讲解了如何使用宽度乘法器（width multiplier）和分辨率乘法器（resolution multiplier），通过权衡较为可靠的精确度来减小尺寸大小和延迟时间，来构建更小更快的MobileNets。将不同的MobileNets和主流的模型进行比较，展现了 MobileNets在大小、速度和精确度这些特性都具有明显优势。最后，我们通过一系列任务的应用，验证了MobileNets的广泛适用性。下一步，本文的计划是在TensorFlow发布他们的模型。</p>
 <p>记录：MobileNet应该是目前在设计小网络方向性能比较比较比较好的论文，论文中并看不出其具体的fps的数据，也是论文的缺憾，不过预计应该会有不错的性能。其也是深度学习网络应用到嵌入式和移动设备的一个比较好的参照。</p>
 
@@ -539,7 +539,7 @@
   <p><span>本文标题:</span><a href="/2017/12/23/MobileNets论文阅读笔记/">MobileNets论文阅读笔记</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Y.G Ren 的个人博客">Y.G Ren</a></p>
   <p><span>发布时间:</span>2017年12月23日 - 00:12</p>
-  <p><span>最后更新:</span>2018年01月07日 - 00:01</p>
+  <p><span>最后更新:</span>2018年01月07日 - 01:01</p>
   <p><span>原始链接:</span><a href="/2017/12/23/MobileNets论文阅读笔记/" title="MobileNets论文阅读笔记">https://ygren.github.io/2017/12/23/MobileNets论文阅读笔记/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://ygren.github.io/2017/12/23/MobileNets论文阅读笔记/"  aria-label="复制成功！"></i></span>
   </p>
