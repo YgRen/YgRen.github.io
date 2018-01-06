@@ -3,6 +3,54 @@
 
 
     
+  <url>
+    <loc>https://ygren.github.io/2017/12/23/MobileNets%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2018-01-06T16:59:42.227Z</lastmod>
+    <data>
+        <display>
+        <title>MobileNets论文阅读笔记</title>
+        <pubTime>2017-12-22T16:19:12.000Z</pubTime>
+        
+        <tag>深度学习</tag>
+         
+        <tag>卷积神经网络</tag>
+         
+        <tag>嵌入式神经网络</tag>
+         
+         
+           
+             
+              <breadCrumb title="计算机视觉" url="https://ygren.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://ygren.github.io/2018/01/07/PVANET%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2018-01-06T16:50:17.334Z</lastmod>
+    <data>
+        <display>
+        <title>PVANET论文阅读笔记</title>
+        <pubTime>2018-01-06T16:49:07.000Z</pubTime>
+        
+        <tag>计算机视觉</tag>
+         
+        <tag>目标检测</tag>
+         
+        <tag>深度学习</tag>
+         
+         
+           
+             
+              <breadCrumb title="计算机视觉" url="https://ygren.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
     
   <url>
     <loc>https://ygren.github.io/2018/01/03/Faster-RCNN%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</loc>
@@ -66,30 +114,6 @@
         <tag>目标检测</tag>
          
         <tag>深度学习</tag>
-         
-         
-           
-             
-              <breadCrumb title="计算机视觉" url="https://ygren.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://ygren.github.io/2017/12/23/MobileNets%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2017-12-22T16:23:39.764Z</lastmod>
-    <data>
-        <display>
-        <title>MobileNets论文阅读笔记</title>
-        <pubTime>2017-12-22T16:19:12.000Z</pubTime>
-        
-        <tag>深度学习</tag>
-         
-        <tag>卷积神经网络</tag>
-         
-        <tag>嵌入式神经网络</tag>
          
          
            
