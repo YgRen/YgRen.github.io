@@ -123,13 +123,13 @@
 
 
 
-<meta name="description" content="本文是发表于 NIPS 2016上的一篇文章，PVANET是韩国研究者（Intel Imaging and Camera Technology）结合了最新的技术，在TITAN X上实现了轻量级模型的实施目标检测任务，在PASCAL VOC上取得了第二名的成绩。 PVAnet是RCNN系列目标方向，基于Faster-RCNN进行改进，Faster-RCNN的基础网络可以使用ZF、VGG、Resnet">
+<meta name="description" content="论文地址：https://arxiv.org/pdf/1608.08021.pdf项目地址：https://github.com/YgRen/TFFRCNN注：本文是我在2017年6月读的一篇文章，这篇文章最初开源的代码是这个地址: https://github.com/CharlesShang/TFFRCNN ，估计不是原作者，后来在测试时，发觉有问题我直接fork了一下，重写了demo测试页面">
 <meta name="keywords" content="计算机视觉,目标检测,深度学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PVANET论文阅读笔记">
 <meta property="og:url" content="https://ygren.github.io/2018/01/07/PVANET论文阅读笔记/index.html">
 <meta property="og:site_name" content="Y.G Ren&#39;Blog">
-<meta property="og:description" content="本文是发表于 NIPS 2016上的一篇文章，PVANET是韩国研究者（Intel Imaging and Camera Technology）结合了最新的技术，在TITAN X上实现了轻量级模型的实施目标检测任务，在PASCAL VOC上取得了第二名的成绩。 PVAnet是RCNN系列目标方向，基于Faster-RCNN进行改进，Faster-RCNN的基础网络可以使用ZF、VGG、Resnet">
+<meta property="og:description" content="论文地址：https://arxiv.org/pdf/1608.08021.pdf项目地址：https://github.com/YgRen/TFFRCNN注：本文是我在2017年6月读的一篇文章，这篇文章最初开源的代码是这个地址: https://github.com/CharlesShang/TFFRCNN ，估计不是原作者，后来在测试时，发觉有问题我直接fork了一下，重写了demo测试页面">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://ygren.github.io/imgs/PVANET1.jpg">
 <meta property="og:image" content="https://ygren.github.io/imgs/PVANET2.jpg">
@@ -137,10 +137,10 @@
 <meta property="og:image" content="https://ygren.github.io/imgs/PVANET4.jpg">
 <meta property="og:image" content="https://ygren.github.io/imgs/PVANET5.jpg">
 <meta property="og:image" content="https://ygren.github.io/imgs/PVANET6.jpg">
-<meta property="og:updated_time" content="2018-01-06T17:15:14.618Z">
+<meta property="og:updated_time" content="2018-01-07T06:19:44.400Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PVANET论文阅读笔记">
-<meta name="twitter:description" content="本文是发表于 NIPS 2016上的一篇文章，PVANET是韩国研究者（Intel Imaging and Camera Technology）结合了最新的技术，在TITAN X上实现了轻量级模型的实施目标检测任务，在PASCAL VOC上取得了第二名的成绩。 PVAnet是RCNN系列目标方向，基于Faster-RCNN进行改进，Faster-RCNN的基础网络可以使用ZF、VGG、Resnet">
+<meta name="twitter:description" content="论文地址：https://arxiv.org/pdf/1608.08021.pdf项目地址：https://github.com/YgRen/TFFRCNN注：本文是我在2017年6月读的一篇文章，这篇文章最初开源的代码是这个地址: https://github.com/CharlesShang/TFFRCNN ，估计不是原作者，后来在测试时，发觉有问题我直接fork了一下，重写了demo测试页面">
 <meta name="twitter:image" content="https://ygren.github.io/imgs/PVANET1.jpg">
 
 
@@ -473,10 +473,6 @@
           
 
           
-              <div class="post-description">
-                  本文是发表于 NIPS 2016上的一篇文章，PVANET是韩国研究者（Intel Imaging and Camera Technology）结合了最新的技术，在TITAN X上实现了轻量级模型的实施目标检测任务，在PASCAL VOC上取得了第二名的成绩。 PVAnet是RCNN系列目标方向，基于Faster-RCNN进行改进，Faster-RCNN的基础网络可以使用ZF、VGG、Resnet等，但精度与速度难以同时提高。PVAnet的含义应该是Performance Vs Accuracy，意为加速模型性能，同时不丢失精度的含义。
-              </div>
-          
 
         </div>
       </header>
@@ -491,7 +487,7 @@
       
 
       
-        <p>论文地址：<a href="https://arxiv.org/pdf/1608.08021.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1608.08021.pdf</a><br>项目地址：<a href="https://github.com/YgRen/TFFRCNN" target="_blank" rel="noopener">https://github.com/YgRen/TFFRCNN</a><br>注：本文是我在2017年6月读的一篇文章，这篇文章最初开源的代码是这个地址: <a href="https://github.com/CharlesShang/TFFRCNN" target="_blank" rel="noopener">https://github.com/CharlesShang/TFFRCNN</a> ，估计不是原作者，后来在测试时，发觉有问题我直接fork了一下，重写了demo测试页面，然后这个项目的PVANet的Train和Test部分网络结果都存在问题，我在本地进行了重写，如果有需要的话我近期会传到Github上去。具体的使用实现可参见<br><a href="https://ygren.github.io/2017/12/22/PVA-Faster-RCNN%E9%85%8D%E7%BD%AE%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/">PVANET的配置安装及使用</a><br> 本文是发表于 NIPS 2016上的一篇文章，PVANET是韩国研究者（Intel Imaging and Camera Technology）结合了最新的技术，在TITAN X上实现了轻量级模型的实施目标检测任务，在PASCAL VOC上取得了第二名的成绩。 PVAnet是RCNN系列目标方向，基于Faster-RCNN进行改进，Faster-RCNN的基础网络可以使用ZF、VGG、Resnet等，但精度与速度难以同时提高。PVAnet的含义应该是Performance Vs Accuracy，意为加速模型性能，同时不丢失精度的含义。</p>
+        <p>论文地址：<a href="https://arxiv.org/pdf/1608.08021.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1608.08021.pdf</a><br>项目地址：<a href="https://github.com/YgRen/TFFRCNN" target="_blank" rel="noopener">https://github.com/YgRen/TFFRCNN</a><br>注：本文是我在2017年6月读的一篇文章，这篇文章最初开源的代码是这个地址: <a href="https://github.com/CharlesShang/TFFRCNN" target="_blank" rel="noopener">https://github.com/CharlesShang/TFFRCNN</a> ，估计不是原作者，后来在测试时，发觉有问题我直接fork了一下，重写了demo测试页面，然后这个项目的PVANet的Train和Test部分网络结果都存在问题，我在本地进行了重写，如果有需要的话我近期会传到Github上去。具体的使用实现可参见<br><a href="https://ygren.github.io/2017/12/22/PVA-Faster-RCNN%E9%85%8D%E7%BD%AE%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8/">PVANET的配置安装及使用</a><br> 本文是发表于 NIPS 2016上的一篇文章，PVANET是韩国研究者（Intel Imaging and Camera Technology）结合了最新的技术，在TITAN X上实现了轻量级模型的实施目标检测任务，在PASCAL VOC上取得了第二名的成绩。 PVAnet是RCNN系列目标方向，基于Faster RCNN进行改进，Faster-RCNN的基础网络可以使用ZF、VGG、Resnet等，但精度与速度难以同时提高。PVAnet的含义应该是Performance Vs Accuracy，意为加速模型性能，同时不丢失精度的含义。</p>
 <h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>本文提出的方法通过调整和结合最近的技术创新来最小化计算代价（cost）在多类目标检测任务中取得了state-of-the-art的准确率。采用“CNN Feature Extraction + Region Proposal +ROI Classification”的结构，主要对特征提取（feature Extraction）部分进行重新设计。主要是因为Region Proposal部分计算量并不太大，而Classification部分可以常见的技术（如 truncated SVD）进行有效压缩。本文的设计原则是采用“less channels with more layers” 和采用一些building blocks，包括 concatenated ReLU、Inception、HyperNet。设计的网络是deep且thin的，在BN（batch  normalization）和残差连接（residual connections）和基于plateau detection的laerning rate的调整的帮助下进行训练。在VOC2007上获得83.8%的mAP，在VOC2012上获得82.5%的mAP（第二名），而每张图片在单核Intel I7-6700K CPU上耗时750ms，在NVIDIA Titan X GPU上每张图只需要46ms。理论上，本文采用的方法，比较于VOC2012比赛的冠军ResNet-101之需要花费12.3%的计算代价。</p>
 <h3 id="1-引言"><a href="#1-引言" class="headerlink" title="1.引言"></a>1.引言</h3><p>近几年CNNs在目标检测领域获得了巨大的提升。由于一些突破性的工作，现在的目标检测系统已经满足了自动驾驶和监控等商业领域的精度要求。然而，就检测速度而言，即使是最好的算法仍然需要较大的计算代价（heavy computational cost）。近来网络压缩和量化技术在网络设计层减少计算代价比较重要。<br>本文提出了针对目标检测任务名为PVANET的轻量级特征提取网络结果，能够在比较其他state-of-the-art方法上不丢失准确率的前提下获得实时的目标检测性能。<br>（1）计算代价（Computational Cost）：输入1065*640大小的图像在特征提取时需要7.9GMAC（ResNet-101:80.5GMAC）<br>（2）运行时性能（Runtime performance）：750ms/image (1.3FPS) 在 Intel i7-6700K CPU (单核)；46ms/image (21.7FPS) on NVIDIA Titan X GPU<br>（3）准确率（Accuracy）: 83.8% mAP on VOC-2007; 82.5% mAP on VOC-2012 (2nd place)<br>设计的关键原则是“less channels with more layers”（即更多的网络层数，更少的通道数，也就是通过减少特征维度，来减少计算量），同时，本文的网络结构采用了一些最近提出的网络块结构（building blocks），其中的一些在目标检测任务中的性能还没有得到证明：<br>（1）Concatenated rectified linear unit (C.ReLU)[2] 被用在我们的CNNs的初期阶段来减少一半的计算数量而不损失精度。<br>（2）Inception[3] 被用在剩下的生成feature的子网络中。一个Inception模块产生不同大小的感受野（receptive fields）的输出激活值，所以增加前一层感受野大小的变化。我们观察叠加的Inception 模块可以比线性链式的CNNs更有效的捕捉大范围的大小变化的目标。<br>（3）采用multi-scale representation的思想（像HyperNet[4] 中）结合多个中间的输出，所以，这使得我们可以同时考虑多个level的细节和非线性。<br>本文展示了thin且deep的网络能够在BN（batch  normalization）[5]和残差连接（residual connections）[1]和基于plateau detection[1]的laerning rate的调整的帮助下非常有效地进行训练。<br>本文剩下的部分，在第二部分简洁的对网络结构设计机械能介绍，并在第三部分对PVANET的结构细节进行了总结，最后在第四部分详细的描述了训练和测试过程，提供了在VOC2007和VOC2012伤的实验结果。</p>
 <h3 id="2-网络设计细节"><a href="#2-网络设计细节" class="headerlink" title="2.网络设计细节"></a>2.网络设计细节</h3><h3 id="2-1C-ReLU-Earlier-building-blocks-in-feature-generation"><a href="#2-1C-ReLU-Earlier-building-blocks-in-feature-generation" class="headerlink" title="2.1C.ReLU: Earlier building blocks in feature generation"></a>2.1C.ReLU: Earlier building blocks in feature generation</h3><p>C.ReLU来源于CNNs中间激活模式引发的。在初期阶段，输出节点倾向于是”配对的”，一个节点激活是另一个节点的相反面。根据这个观察，C.ReLU减少一半输出通道(output channels)的数量，通过简单的连接相同的输出和negation使其变成双倍，即达到原来输出的数量，这使得2倍的速度提升而没有损失精度。<br>C.ReLU的实现细节如下。比较于原始的C.ReLU，本文在concatenation（串联）之后，增加了scaling and shifting（缩放和移动），这样的操作允许每个channel（通道）的斜率和激活阈值与其相对的channel不同<br><img src="/imgs/PVANET1.jpg" alt="Alt text"></p>
@@ -503,7 +499,7 @@
 <h3 id="4-2-VOC2007"><a href="#4-2-VOC2007" class="headerlink" title="4.2.VOC2007"></a>4.2.VOC2007</h3><p>Table2展示了我们的模型在不同配置下的准确率。由于Inception和多尺度feature，我们的RPN产生的initial proposals非常的准确。因为结果表示超过200个proposals没有对检测的准确率起到显著的帮助，我们在剩下的实验中把proposals 的数量固定在200个。我们也测量了当迭代回归不使用时用带有bounding-box voting的性能。<br>     Faster R-CNN包含的FC layer，它容易压缩并且准确率没有显著的下降。我们通过the truncated singular value decomposition (SVD)把”4096-4096”的FC layer压缩成”512-4096-412-4096”，之后进行一些微调。这个压缩的网络达到了82.9%mAP（-0.9%）而且运行达到了31.3FPS（+9.6FPS）<br><img src="/imgs/PVANET5.jpg" alt="Alt text"></p>
 <h3 id="4-3-VOC2012"><a href="#4-3-VOC2012" class="headerlink" title="4.3.VOC2012"></a>4.3.VOC2012</h3><p><img src="/imgs/PVANET6.jpg" alt="Alt text"><br>Table3总结了PVANET+和一些先进的网络在PASCAL VOC2012排行榜上的比较。我们PVANET+达到了82.5%mAP，位列排行榜的第二名，超过其他竞争者除了”Faster R-CNN + ResNet-101”。然而第一名使用的ResNet-101比PVANET大很多同时一些耗时的技术，例如global contexts（全局上下文）和多尺度测试，导致至少比我们慢40倍。在表3,我们也比较computation cost。在所有超过80%mAP的网络中，PVANET是唯一一个运行时间小于50ms的。考虑精度和计算cost，PVANET+是排行榜中最有效的网络。</p>
 <h3 id="5-总结"><a href="#5-总结" class="headerlink" title="5.总结"></a>5.总结</h3><p>本文展示了当前的网络是高度冗余的，并且设计了一个轻量级的网络能够有足够能力应对复杂的视觉任务。精心的采纳和结合最近的深度学习中的创新成功是我们能够重新设计Faster RCNN框架的特征提取部分从而最大化计算效率。即使我们提出的网络是为目标检测任务设计的，当我们相信本文的设计原则能够广泛应用于诸如人脸识别、语音分析的任务中。</p>
-<h3 id="评注"><a href="#评注" class="headerlink" title="评注"></a>评注</h3><p>这篇论文发表于NIPS 2016上的一篇关于目标检测的论文，在这篇论文之前效果最好的是Faster RCNN++和R-FCN，二者各有利弊，Fast RCNN ++在精度上有提升，但是速度还是比较慢，R-FCN解决了速度问题，精度却稍逊一筹。目标检测的Baseline基本沿袭了这一思路： CNN Featue Extract + Region Rroposal + RoI Classification。本文作者从CNN Feature Extract入手，改进了特征提取网络结果，最终达到了非常好的效果。从文章内容来上说本文的主要工作就是在思路上对CNNN Feature Extract这一角度的优化处理，从而取得了较好的性能，从理论上来说，只是对现有的C.ReLU、Inception、HyperNet的多层特征融合的思路的一个整合，借鉴了比较有突破性的结果，结合BN和各种学习调参策略。从工程的角度来说，这是一篇不错的文章，在工程上取得了较好的性能，纯粹从学术角度上，亮点并不多。同时，该网络训练似乎存在训练不佳的问题。</p>
+<h3 id="评注"><a href="#评注" class="headerlink" title="评注"></a>评注</h3><p>这篇论文发表于NIPS 2016上的一篇关于目标检测的论文，在这篇论文之前效果最好的是Faster RCNN++和R-FCN，二者各有利弊，Fast RCNN ++在精度上有提升，但是速度还是比较慢，R-FCN解决了速度问题，精度却稍逊一筹。目标检测的Baseline基本沿袭了这一思路： CNN Featue Extract + Region Rroposal + RoI Classification。本文作者从CNN Feature Extract入手，改进了特征提取网络结果，最终达到了非常好的效果。从文章内容来上说本文的主要工作就是在思路上对CNNN Feature Extract这一角度的优化处理，从而取得了较好的性能，从理论上来说，只是对现有的C.ReLU、Inception、HyperNet的多层特征融合的思路的一个整合，借鉴了比较有突破性的结果，结合BN和各种学习调参策略。从工程的角度来说，这是一篇不错的文章，在工程上取得了较好的性能，纯粹从学术角度上，亮点并不多。同时，该网络训练存在训练不好收敛的问题。</p>
 
       
     </div>
@@ -522,7 +518,7 @@
   <p><span>本文标题:</span><a href="/2018/01/07/PVANET论文阅读笔记/">PVANET论文阅读笔记</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Y.G Ren 的个人博客">Y.G Ren</a></p>
   <p><span>发布时间:</span>2018年01月07日 - 00:01</p>
-  <p><span>最后更新:</span>2018年01月07日 - 01:01</p>
+  <p><span>最后更新:</span>2018年01月07日 - 14:01</p>
   <p><span>原始链接:</span><a href="/2018/01/07/PVANET论文阅读笔记/" title="PVANET论文阅读笔记">https://ygren.github.io/2018/01/07/PVANET论文阅读笔记/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://ygren.github.io/2018/01/07/PVANET论文阅读笔记/"  aria-label="复制成功！"></i></span>
   </p>
