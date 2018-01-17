@@ -4,6 +4,30 @@
 
     
   <url>
+    <loc>https://ygren.github.io/2018/01/07/%E6%8F%92%E7%94%BB%E7%A0%94%E7%A9%B6%EF%BC%9A%E4%BD%BF%E7%94%A8%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%9D%A5%E8%A7%A3%E5%86%B3%E6%89%8B%E7%BB%98%E8%8D%89%E5%9B%BE%E7%9A%84%E7%AE%80%E5%8C%96%E6%8F%92%E7%94%BB%E7%94%9F%E6%88%90%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2018-01-17T06:58:16.258Z</lastmod>
+    <data>
+        <display>
+        <title>插画研究：使用深度学习来解决手绘草图的简化插画生成问题</title>
+        <pubTime>2018-01-07T09:24:32.000Z</pubTime>
+        
+        <tag>深度学习</tag>
+         
+        <tag>计算机图形学</tag>
+         
+        <tag>插画研究</tag>
+         
+         
+           
+             
+              <breadCrumb title="计算机图形学" url="https://ygren.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E5%AD%A6/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://ygren.github.io/2018/01/09/R-FCN%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2018-01-09T12:54:30.061Z</lastmod>
     <data>
@@ -27,30 +51,6 @@
     </url>
 
     
-    
-  <url>
-    <loc>https://ygren.github.io/2018/01/07/%E6%8F%92%E7%94%BB%E7%A0%94%E7%A9%B6%EF%BC%9A%E4%BD%BF%E7%94%A8%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%9D%A5%E8%A7%A3%E5%86%B3%E6%89%8B%E7%BB%98%E8%8D%89%E5%9B%BE%E7%9A%84%E7%AE%80%E5%8C%96%E6%8F%92%E7%94%BB%E7%94%9F%E6%88%90%E9%97%AE%E9%A2%98/</loc>
-    <lastmod>2018-01-07T11:09:44.230Z</lastmod>
-    <data>
-        <display>
-        <title>插画研究：使用深度学习来解决手绘草图的简化插画生成问题</title>
-        <pubTime>2018-01-07T09:24:32.000Z</pubTime>
-        
-        <tag>深度学习</tag>
-         
-        <tag>计算机图形学</tag>
-         
-        <tag>插画研究</tag>
-         
-         
-           
-             
-              <breadCrumb title="计算机图像学" url="https://ygren.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%83%8F%E5%AD%A6/"/>
-          
-        </display>
-    </data>
-    </url>
-
     
   <url>
     <loc>https://ygren.github.io/2018/01/07/PVANET%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</loc>
